@@ -47,235 +47,89 @@
         </div>
     </section>
 
-    <!-- Featured Videos -->
+    <!-- Video Library -->
     <section class="section bg-light">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Featured Content</h2>
-                <p class="section-description">Key project highlights and demonstrations</p>
+                <h2 class="section-title">Project Videos</h2>
+                <p class="section-description">Demonstrations and documentation of our research progress</p>
             </div>
-            <div class="featured-videos">
-                <div class="video-placeholder featured">
-                    <div class="video-content">
-                        <div class="video-icon">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="video-overlay">
-                            <div class="video-info">
-                                <h3>Project Kickoff Overview</h3>
-                                <p>Introduction to the Underwater Maritime Monitoring project, objectives, and partnership between Khalifa University and Dubai Future Lab.</p>
-                                <span class="video-duration">5:30</span>
-                                <span class="video-category">Presentation</span>
-                                <div class="video-status coming-soon">Coming Soon</div>
-                            </div>
-                        </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls autoplay loop muted playsinline preload="metadata">
+                            <source src="videos/ROV_localization1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h4>ROV Localization (Extended)</h4>
+                        <p>Extended testing of the ROV localization system under varying underwater conditions. This demonstration validates system robustness in different visibility levels, water currents, and operational depths for reliable autonomous navigation.</p>
                     </div>
                 </div>
 
-                <div class="video-placeholder featured">
-                    <div class="video-content">
-                        <div class="video-icon">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="video-overlay">
-                            <div class="video-info">
-                                <h3>Multi-Platform System Design</h3>
-                                <p>Deep dive into the integrated USV-ROV system architecture and design principles for maritime monitoring applications.</p>
-                                <span class="video-duration">12:45</span>
-                                <span class="video-category">Technical Demo</span>
-                                <div class="video-status coming-soon">Coming Soon</div>
-                            </div>
-                        </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls autoplay loop muted playsinline preload="metadata">
+                            <source src="videos/line_tracking.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h4>Line Tracking</h4>
+                        <p>Autonomous transect line following system for coral reef monitoring applications. The vision-based algorithm enables the ROV to follow predefined survey lines with high precision, ensuring consistent and repeatable monitoring data collection.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Video Grid -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Video Library</h2>
-                <p class="section-description">Complete collection of project videos organized by development phase</p>
-            </div>
-            
-            <!-- Phase 1 Videos -->
-            <div class="video-section">
-                <h3 class="phase-title">
-                    <i class="fas fa-flag"></i>
-                    Phase 1: Design & Development (2025-2026)
-                </h3>
-                <div class="video-grid">
-                    <div class="video-placeholder" data-category="demonstrations">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>Platform Design Simulation</h4>
-                                    <p>3D modeling and simulation of the USV-ROV integrated platform design.</p>
-                                    <span class="video-duration">8:20</span>
-                                    <span class="video-category">Design</span>
-                                    <div class="video-status coming-soon">In Development</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls autoplay loop muted playsinline preload="metadata">
+                            <source src="videos/line_tracking1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
-
-                    <div class="video-placeholder" data-category="progress">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>Sensor Integration Testing</h4>
-                                    <p>Laboratory testing of multi-sensor integration and calibration procedures.</p>
-                                    <span class="video-duration">15:30</span>
-                                    <span class="video-category">Testing</span>
-                                    <div class="video-status coming-soon">Planned</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="video-placeholder" data-category="education">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>Underwater Navigation Fundamentals</h4>
-                                    <p>Educational overview of underwater navigation challenges and autonomous solutions.</p>
-                                    <span class="video-duration">10:15</span>
-                                    <span class="video-category">Educational</span>
-                                    <div class="video-status coming-soon">Planned</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="video-info">
+                        <h4>Line Tracking (Extended)</h4>
+                        <p>Extended validation of the transect line tracking system in various underwater conditions. This test demonstrates the algorithm's adaptability to different lighting conditions, water turbidity levels, and line configurations for robust coral reef surveying.</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Phase 2 Videos -->
-            <div class="video-section">
-                <h3 class="phase-title">
-                    <i class="fas fa-cog"></i>
-                    Phase 2: Implementation & Testing (2026-2027)
-                </h3>
-                <div class="video-grid">
-                    <div class="video-placeholder" data-category="demonstrations">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>First Prototype Demonstration</h4>
-                                    <p>Live demonstration of the first working prototype in controlled environment.</p>
-                                    <span class="video-duration">20:45</span>
-                                    <span class="video-category">Demo</span>
-                                    <div class="video-status coming-soon">Future</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls autoplay loop muted playsinline preload="metadata">
+                            <source src="videos/3D_mapping.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
-
-                    <div class="video-placeholder" data-category="demonstrations">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>AI Perception System Test</h4>
-                                    <p>Real-time demonstration of AI-powered underwater object detection and tracking.</p>
-                                    <span class="video-duration">12:00</span>
-                                    <span class="video-category">AI Demo</span>
-                                    <div class="video-status coming-soon">Future</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="video-placeholder" data-category="progress">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>Lab to Field Transition</h4>
-                                    <p>Documentation of the transition from laboratory testing to field trials.</p>
-                                    <span class="video-duration">18:30</span>
-                                    <span class="video-category">Progress</span>
-                                    <div class="video-status coming-soon">Future</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="video-info">
+                        <h4>3D Mapping</h4>
+                        <p>Demonstration of underwater 3D environment reconstruction using advanced depth sensors and SLAM algorithms. This technology enables precise mapping of underwater structures, coral reefs, and seabed topography for comprehensive maritime monitoring.</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Phase 3 Videos -->
-            <div class="video-section">
-                <h3 class="phase-title">
-                    <i class="fas fa-rocket"></i>
-                    Phase 3: Deployment & Validation (2027-2028)
-                </h3>
-                <div class="video-grid">
-                    <div class="video-placeholder" data-category="demonstrations">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>Real-World Deployment</h4>
-                                    <p>Full-scale deployment of the maritime monitoring system in operational environment.</p>
-                                    <span class="video-duration">25:15</span>
-                                    <span class="video-category">Deployment</span>
-                                    <div class="video-status coming-soon">Future</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls autoplay loop muted playsinline preload="metadata">
+                            <source src="videos/Field_data_collection.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
-
-                    <div class="video-placeholder" data-category="presentations">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>Project Results Presentation</h4>
-                                    <p>Final project presentation showcasing achievements, results, and impact.</p>
-                                    <span class="video-duration">30:00</span>
-                                    <span class="video-category">Presentation</span>
-                                    <div class="video-status coming-soon">Future</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="video-info">
+                        <h4>Field Data Collection</h4>
+                        <p>Real-world field operations showcasing data acquisition from marine environments. This includes sensor deployment, environmental sampling, and collection of underwater imagery for training AI models and validating system performance.</p>
                     </div>
+                </div>
 
-                    <div class="video-placeholder" data-category="education">
-                        <div class="video-content">
-                            <div class="video-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="video-overlay">
-                                <div class="video-info">
-                                    <h4>Lessons Learned & Future Directions</h4>
-                                    <p>Comprehensive review of project outcomes and future research directions.</p>
-                                    <span class="video-duration">22:30</span>
-                                    <span class="video-category">Educational</span>
-                                    <div class="video-status coming-soon">Future</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls autoplay loop muted playsinline preload="metadata">
+                            <source src="videos/ROV_localization.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h4>ROV Localization</h4>
+                        <p>Demonstration of the Remotely Operated Vehicle positioning system in underwater environments. The localization algorithm combines acoustic positioning, visual odometry, and IMU data to achieve accurate real-time position tracking without GPS.</p>
                     </div>
                 </div>
             </div>
