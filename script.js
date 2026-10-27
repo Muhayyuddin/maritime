@@ -190,7 +190,7 @@ function initReveal() {
     const selector = [
         '.overview-card', '.quick-link-card', '.objective-item', '.wp-card', '.timeline-year',
         '.timeline-item', '.stat-card', '.partner-detailed-card', '.team-member-card',
-        '.publication-item', '.research-area-card', '.video-card'
+        '.publication-item', '.dataset-card', '.highlight-card', '.site-row', '.research-area-card', '.video-card'
     ].join(', ');
 
     const observer = new IntersectionObserver((entries, obs) => {
