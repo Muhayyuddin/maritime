@@ -963,6 +963,65 @@ p {
     font-weight: 600;
 }
 
+.wp-roles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 1.5rem;
+    margin: 1rem 0 1.1rem;
+}
+
+.wp-role {
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--on-dark-line);
+}
+
+.wp-role h5,
+.wp-results-title {
+    margin-bottom: 0.3rem;
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.wp-role p {
+    font-size: 0.92rem;
+}
+
+.wp-results-title {
+    margin-bottom: 0.5rem;
+    color: var(--buoy);
+}
+
+.wp-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wp-results li {
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--on-dark-line);
+    border-radius: 4px;
+    color: var(--on-dark);
+    font-size: 0.8rem;
+}
+
+.wp-results li::before {
+    content: none;
+}
+
+@media (max-width: 768px) {
+    .wp-roles {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
 .wp-timeline {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
