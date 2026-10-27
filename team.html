@@ -6,16 +6,19 @@
     <title>Team | Underwater Maritime Monitoring</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav container">
-            <div class="nav-brand">
-                <i class="fas fa-ship nav-icon"></i>
-                <span>Maritime Monitoring</span>
-            </div>
+            <a href="index.html" class="nav-brand" aria-label="Underwater Maritime Monitoring home">
+                <img src="dff-logo-white.png" alt="Dubai Future Foundation" class="brand-logo brand-logo-dff">
+                <span class="brand-divider" aria-hidden="true"></span>
+                <img src="ku-logo-white.png" alt="Khalifa University" class="brand-logo brand-logo-ku">
+            </a>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="objectives.html">Objectives</a></li>
@@ -56,11 +59,38 @@
             </div>
             <div class="team-grid">
                 <div class="team-member-card">
-                    <div class="member-photo">
-                        <i class="fas fa-user-graduate"></i>
+                    <div class="member-photo has-photo">
+                        <img src="team-tarek-taha.jpg" alt="Dr. Tarek Taha" loading="lazy">
                     </div>
                     <div class="member-info">
-                        <h3>Dr Irfan Hussain</h3>
+                        <h3>Dr. Tarek Taha</h3>
+                        <p class="member-title">Principal Investigator &middot; Director, Robotics Lab</p>
+                        <p class="member-affiliation">Dubai Future Labs, Dubai Future Foundation</p>
+                        <p class="member-bio">Dr. Taha oversees the applied research and technology validation components, ensuring seamless translation from research to practical implementation.</p>
+                        <div class="member-contact">
+                            <a href="mailto:tarek.taha@dubaifuture.gov.ae" class="email-link">
+                                <i class="fas fa-envelope"></i>
+                                tarek.taha@dubaifuture.gov.ae
+                            </a>
+                        </div>
+                        <div class="member-expertise">
+                            <h4>Research Areas:</h4>
+                            <div class="expertise-tags">
+                                <span class="tag">Applied Research</span>
+                                <span class="tag">Technology Validation</span>
+                                <span class="tag">System Integration</span>
+                                <span class="tag">Field Testing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member-card">
+                    <div class="member-photo has-photo">
+                        <img src="team-irfan-hussain.jpg" alt="Dr. Irfan Hussain" loading="lazy">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Irfan Hussain</h3>
                         <p class="member-title">Principal Investigator</p>
                         <p class="member-affiliation">Khalifa University of Science and Technology</p>
                         <p class="member-bio">Dr. Hussain leads the fundamental research and algorithm development aspects, focusing on advanced robotics and autonomous system technologies.</p>
@@ -81,33 +111,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="team-member-card">
-                    <div class="member-photo">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Dr Tarek Taha</h3>
-                        <p class="member-title">Principal Investigator</p>
-                        <p class="member-affiliation">Dubai Future Labs</p>
-                        <p class="member-bio">Dr. Taha oversees the applied research and technology validation components, ensuring seamless translation from research to practical implementation.</p>
-                        <div class="member-contact">
-                            <a href="mailto:Tarek.taha@dubaifuture.gov.ae" class="email-link">
-                                <i class="fas fa-envelope"></i>
-                                Tarek.taha@dubaifuture.gov.ae
-                            </a>
-                        </div>
-                        <div class="member-expertise">
-                            <h4>Research Areas:</h4>
-                            <div class="expertise-tags">
-                                <span class="tag">Applied Research</span>
-                                <span class="tag">Technology Validation</span>
-                                <span class="tag">System Integration</span>
-                                <span class="tag">Field Testing</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -120,6 +123,166 @@
                 <p class="section-description">Core team members driving the project forward</p>
             </div>
             
+            <!-- Dubai Future Labs Team -->
+            <h3 class="team-subsection-title">Dubai Future Labs Team</h3>
+            <div class="team-grid">
+                <div class="team-member-card">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Chien-Ming Tseng</h3>
+                        <p class="member-title">Principal Robotics Engineer</p>
+                        <p class="member-affiliation">Dubai Future Labs, Dubai Future Foundation</p>
+                        <p class="member-bio">Provides technical leadership on robotic platform development, guiding the design and integration of the ROV and USV systems from prototype to field deployment.</p>
+                        <div class="member-contact">
+                            <a href="mailto:chien.tseng@dubaifuture.gov.ae" class="email-link">
+                                <i class="fas fa-envelope"></i>
+                                chien.tseng@dubaifuture.gov.ae
+                            </a>
+                        </div>
+                        <div class="member-expertise">
+                            <h4>Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span class="tag">Robotic Systems</span>
+                                <span class="tag">Platform Development</span>
+                                <span class="tag">System Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member-card">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Vivek Radhakrishnan</h3>
+                        <p class="member-title">Senior Robotics Engineer</p>
+                        <p class="member-affiliation">Dubai Future Labs, Dubai Future Foundation</p>
+                        <p class="member-bio">Develops and integrates the robotic software and hardware stack, supporting platform testing and marine trials in UAE waters.</p>
+                        <div class="member-contact">
+                            <a href="mailto:vivek.radhakrishnan@dubaifuture.gov.ae" class="email-link">
+                                <i class="fas fa-envelope"></i>
+                                vivek.radhakrishnan@dubaifuture.gov.ae
+                            </a>
+                        </div>
+                        <div class="member-expertise">
+                            <h4>Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span class="tag">Robotics Engineering</span>
+                                <span class="tag">System Integration</span>
+                                <span class="tag">Field Testing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member-card">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Flavio Duarte</h3>
+                        <p class="member-title">Senior Mechatronics Engineer</p>
+                        <p class="member-affiliation">Dubai Future Labs, Dubai Future Foundation</p>
+                        <p class="member-bio">Leads mechatronic design and hardware prototyping, covering the mechanical, electrical and waterproofing aspects of the marine platforms.</p>
+                        <div class="member-contact">
+                            <a href="mailto:flavio.duarte@dubaifuture.gov.ae" class="email-link">
+                                <i class="fas fa-envelope"></i>
+                                flavio.duarte@dubaifuture.gov.ae
+                            </a>
+                        </div>
+                        <div class="member-expertise">
+                            <h4>Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span class="tag">Mechatronics</span>
+                                <span class="tag">Hardware Prototyping</span>
+                                <span class="tag">Electro-Mechanical Design</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member-card">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Jong Wook Bae</h3>
+                        <p class="member-title">Senior Perception Engineer</p>
+                        <p class="member-affiliation">Dubai Future Labs, Dubai Future Foundation</p>
+                        <p class="member-bio">Works on perception systems for the marine platforms, including sensor integration and onboard processing for real-world operation.</p>
+                        <div class="member-contact">
+                            <a href="mailto:jong.wookbae@dubaifuture.gov.ae" class="email-link">
+                                <i class="fas fa-envelope"></i>
+                                jong.wookbae@dubaifuture.gov.ae
+                            </a>
+                        </div>
+                        <div class="member-expertise">
+                            <h4>Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span class="tag">Perception</span>
+                                <span class="tag">Sensor Integration</span>
+                                <span class="tag">Computer Vision</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member-card">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Maryam Buhumaid</h3>
+                        <p class="member-title">Associate Manager</p>
+                        <p class="member-affiliation">Dubai Future Labs, Dubai Future Foundation</p>
+                        <p class="member-bio">Supports the management and coordination of the project, aligning activities with Dubai Future Foundation's programmes and stakeholders.</p>
+                        <div class="member-contact">
+                            <a href="mailto:maryam.buhumaid@dubaifuture.gov.ae" class="email-link">
+                                <i class="fas fa-envelope"></i>
+                                maryam.buhumaid@dubaifuture.gov.ae
+                            </a>
+                        </div>
+                        <div class="member-expertise">
+                            <h4>Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span class="tag">Programme Management</span>
+                                <span class="tag">Stakeholder Engagement</span>
+                                <span class="tag">Coordination</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member-card">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Qasim Kapasi</h3>
+                        <p class="member-title">Technical Project Manager</p>
+                        <p class="member-affiliation">Dubai Future Labs, Dubai Future Foundation</p>
+                        <p class="member-bio">Coordinates all project activities, manages timelines and deliverables, and ensures effective communication between all stakeholders and team members across both institutions.</p>
+                        <div class="member-contact">
+                            <a href="mailto:qasim.kapasi@dubaifuture.gov.ae" class="email-link">
+                                <i class="fas fa-envelope"></i>
+                                qasim.kapasi@dubaifuture.gov.ae
+                            </a>
+                        </div>
+                        <div class="member-expertise">
+                            <h4>Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span class="tag">Project Management</span>
+                                <span class="tag">Stakeholder Communication</span>
+                                <span class="tag">Resource Allocation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Khalifa University Team -->
             <h3 class="team-subsection-title">Khalifa University Team</h3>
             <div class="team-grid">
@@ -128,16 +291,10 @@
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="member-info">
-                        <h3>Dr Waseem Akram</h3>
+                        <h3>Dr. Basit Alawode</h3>
                         <p class="member-title">Post Doctoral Researcher Underwater robotics</p>
                         <p class="member-affiliation">Khalifa University of Science and Technology</p>
-                        <p class="member-bio">Dr. Akram brings extensive expertise in underwater robotics, focusing on advanced mechanism design, hydrodynamic modeling, and autonomous control strategies for complex marine environments.</p>
-                        <div class="member-contact">
-                            <a href="mailto:waseem.akram@ku.ac.ae" class="email-link">
-                                <i class="fas fa-envelope"></i>
-                                waseem.akram@ku.ac.ae
-                            </a>
-                        </div>
+                        <p class="member-bio">Dr. Alawode brings extensive expertise in underwater robotics, focusing on advanced mechanism design, hydrodynamic modeling, and autonomous control strategies for complex marine environments.</p>
                         <div class="member-expertise">
                             <h4>Expertise:</h4>
                             <div class="expertise-tags">
@@ -154,7 +311,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="member-info">
-                        <h3>Muhayy Ud Din</h3>
+                        <h3>Dr. Muhayy Ud Din</h3>
                         <p class="member-title">Post Doctoral Researcher Maritime robotics</p>
                         <p class="member-affiliation">Khalifa University of Science and Technology</p>
                         <p class="member-bio">Leading research in maritime robotics, specializing in the development of robust underwater platforms, scalable multi-agent systems, and real-world deployment of autonomous marine vehicles.</p>
@@ -206,7 +363,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="member-info">
-                        <h3>Atif Sultan</h3>
+                        <h3>Dr. Atif Sultan</h3>
                         <p class="member-title">Phd Student ROV control</p>
                         <p class="member-affiliation">Khalifa University of Science and Technology</p>
                         <p class="member-bio">Research focus is on developing robust and adaptive control architectures for Remotely Operated Vehicles, ensuring stability and precise maneuverability in dynamic underwater conditions.</p>
@@ -226,7 +383,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="member-info">
-                        <h3>Muayad</h3>
+                        <h3>Muayad Abujabal</h3>
                         <p class="member-title">Phd Student ROV localization</p>
                         <p class="member-affiliation">Khalifa University of Science and Technology</p>
                         <p class="member-bio">Dedicated to solving complex localization challenges underwater, developing sensor fusion algorithms and simultaneous localization and mapping (SLAM) techniques for ROVs.</p>
@@ -246,7 +403,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="member-info">
-                        <h3>Mahmoud</h3>
+                        <h3>Mahmoud Said Ibrahim</h3>
                         <p class="member-title">Phd Student Underwater vision</p>
                         <p class="member-affiliation">Khalifa University of Science and Technology</p>
                         <p class="member-bio">Investigating advanced machine learning approaches for underwater scene understanding, object detection, and tracking in low-visibility marine environments.</p>
@@ -261,96 +418,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Dubai Future Labs Team -->
-            <h3 class="team-subsection-title">Dubai Future Labs Team</h3>
-            <div class="team-grid">
-                <div class="team-member-card">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Vivik</h3>
-                        <p class="member-title">Research Engineer</p>
-                        <p class="member-affiliation">Dubai Future Labs</p>
-                        <p class="member-bio">Contributes to the research and development aspects of the maritime monitoring project with focus on practical implementation.</p>
-                        <div class="member-expertise">
-                            <h4>Expertise:</h4>
-                            <div class="expertise-tags">
-                                <span class="tag">Research & Development</span>
-                                <span class="tag">System Engineering</span>
-                                <span class="tag">Technology Implementation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member-card">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Chen</h3>
-                        <p class="member-title">Research Engineer</p>
-                        <p class="member-affiliation">Dubai Future Labs</p>
-                        <p class="member-bio">Supports the technical development and research activities within the maritime monitoring project framework.</p>
-                        <div class="member-expertise">
-                            <h4>Expertise:</h4>
-                            <div class="expertise-tags">
-                                <span class="tag">Technical Development</span>
-                                <span class="tag">Research Support</span>
-                                <span class="tag">System Analysis</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member-card">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Maryam</h3>
-                        <p class="member-title">Research Engineer</p>
-                        <p class="member-affiliation">Dubai Future Labs</p>
-                        <p class="member-bio">Contributes to the research initiatives and technical development of underwater maritime monitoring systems.</p>
-                        <div class="member-expertise">
-                            <h4>Expertise:</h4>
-                            <div class="expertise-tags">
-                                <span class="tag">Research Initiatives</span>
-                                <span class="tag">Technical Development</span>
-                                <span class="tag">Maritime Systems</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member-card">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Qasim Kapasi</h3>
-                        <p class="member-title">Project Manager</p>
-                        <p class="member-affiliation">Dubai Future Labs</p>
-                        <p class="member-bio">Coordinates all project activities, manages timelines and deliverables, and ensures effective communication between all stakeholders and team members across both institutions.</p>
-                        <div class="member-contact">
-                            <a href="mailto:qasim.kapasi@dubaifuture.gov.ae" class="email-link">
-                                <i class="fas fa-envelope"></i>
-                                qasim.kapasi@dubaifuture.gov.ae
-                            </a>
-                        </div>
-                        <div class="member-expertise">
-                            <h4>Expertise:</h4>
-                            <div class="expertise-tags">
-                                <span class="tag">Project Management</span>
-                                <span class="tag">Stakeholder Communication</span>
-                                <span class="tag">Resource Allocation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -359,9 +426,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <i class="fas fa-ship"></i>
                     <h3>Underwater Maritime Monitoring</h3>
-                    <p>A joint initiative by Khalifa University and Dubai Future Lab</p>
+                    <p>A joint initiative funded and spearheaded by Dubai Future Foundation, in collaboration with Khalifa University</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-section">
@@ -376,8 +442,8 @@
                     <div class="footer-section">
                         <h4>Partners</h4>
                         <ul>
+                            <li><a href="partners.html">Dubai Future Labs</a></li>
                             <li><a href="partners.html">Khalifa University</a></li>
-                            <li><a href="partners.html">Dubai Future Lab</a></li>
                             <li><a href="partners.html">SeaWorld Abu Dhabi</a></li>
                             <li><a href="partners.html">Abu Dhabi Environmental Agency</a></li>
                         </ul>

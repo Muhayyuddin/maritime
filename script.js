@@ -1,237 +1,250 @@
-// Mobile Navigation Toggle
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Mobile navigation toggle
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
-    
+
     if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
+        navToggle.setAttribute('aria-label', 'Open menu');
+        navToggle.setAttribute('aria-expanded', 'false');
+
+        const setOpen = open => {
+            navMenu.classList.toggle('active', open);
+            navToggle.classList.toggle('active', open);
+            navToggle.setAttribute('aria-expanded', String(open));
+            navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        };
+
+        navToggle.addEventListener('click', () => setOpen(!navMenu.classList.contains('active')));
+        navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setOpen(false)));
     }
-    
-    // Close mobile menu when clicking on links
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-        });
-    });
 });
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight - 20;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Header scroll effect
+// Header shadow once the page scrolls
 window.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
+    if (header) {
+        header.classList.toggle('scrolled', window.scrollY > 24);
     }
-});
+}, { passive: true });
 
-// Image hover effects for hero section
-document.addEventListener('DOMContentLoaded', function() {
-    const heroImage = document.querySelector('.hero-img');
-    
-    if (heroImage) {
-        // Add subtle animation on load
-        setTimeout(() => {
-            heroImage.style.opacity = '1';
-            heroImage.style.transform = 'translateY(0)';
-        }, 500);
+// Bathymetric contour field behind the hero and page headers.
+// Marching squares over a slowly drifting wave field; every fourth line is an index contour.
+function initContours(band) {
+    const canvas = document.createElement('canvas');
+    canvas.className = 'contour-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    band.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    const CELL = 12;
+    const LEVELS = [];
+    for (let v = -1.6; v <= 1.6001; v += 0.2) {
+        LEVELS.push(v);
     }
-});
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+    let width = 0;
+    let height = 0;
+    let cols = 0;
+    let rows = 0;
+    let field = new Float32Array(0);
+    let visible = true;
+    let lastFrame = 0;
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
+    function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = band.clientWidth;
+        height = band.clientHeight;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        cols = Math.ceil(width / CELL) + 1;
+        rows = Math.ceil(height / CELL) + 1;
+        field = new Float32Array(cols * rows);
+    }
+
+    function sample(px, py, t) {
+        const x = px / 190;
+        const y = py / 190;
+        return Math.sin(x * 0.9 + t) * Math.cos(y * 1.1 - t * 0.6)
+            + 0.6 * Math.sin((x * 0.5 + y * 0.8) * 1.3 + t * 0.8)
+            + 0.45 * Math.cos(Math.hypot(x - 4.5, y - 1.2) * 1.5 - t * 1.1);
+    }
+
+    function draw(t) {
+        for (let j = 0; j < rows; j++) {
+            for (let i = 0; i < cols; i++) {
+                field[j * cols + i] = sample(i * CELL, j * CELL, t);
+            }
         }
-    });
-}, observerOptions);
 
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.overview-card, .objective-item, .wp-card, .timeline-item, .partner-card, .team-card');
-    animatedElements.forEach(el => {
+        ctx.clearRect(0, 0, width, height);
+
+        LEVELS.forEach((level, k) => {
+            const isIndex = k % 4 === 0;
+            ctx.beginPath();
+            ctx.strokeStyle = isIndex ? 'rgba(140, 236, 246, 0.36)' : 'rgba(140, 236, 246, 0.14)';
+            ctx.lineWidth = isIndex ? 1.2 : 0.8;
+
+            for (let j = 0; j < rows - 1; j++) {
+                for (let i = 0; i < cols - 1; i++) {
+                    const a = field[j * cols + i];
+                    const b = field[j * cols + i + 1];
+                    const c = field[(j + 1) * cols + i + 1];
+                    const d = field[(j + 1) * cols + i];
+                    const idx = (a > level ? 8 : 0) | (b > level ? 4 : 0) | (c > level ? 2 : 0) | (d > level ? 1 : 0);
+                    if (idx === 0 || idx === 15) continue;
+
+                    const x = i * CELL;
+                    const y = j * CELL;
+                    const top = [x + CELL * (level - a) / (b - a), y];
+                    const right = [x + CELL, y + CELL * (level - b) / (c - b)];
+                    const bottom = [x + CELL * (level - d) / (c - d), y + CELL];
+                    const left = [x, y + CELL * (level - a) / (d - a)];
+
+                    const seg = (p, q) => {
+                        ctx.moveTo(p[0], p[1]);
+                        ctx.lineTo(q[0], q[1]);
+                    };
+
+                    switch (idx) {
+                        case 1: case 14: seg(left, bottom); break;
+                        case 2: case 13: seg(bottom, right); break;
+                        case 3: case 12: seg(left, right); break;
+                        case 4: case 11: seg(top, right); break;
+                        case 5: seg(left, top); seg(bottom, right); break;
+                        case 6: case 9: seg(top, bottom); break;
+                        case 7: case 8: seg(left, top); break;
+                        case 10: seg(left, bottom); seg(top, right); break;
+                    }
+                }
+            }
+            ctx.stroke();
+        });
+    }
+
+    function loop(now) {
+        if (visible && !document.hidden && now - lastFrame > 40) {
+            lastFrame = now;
+            draw(now * 0.00012);
+        }
+        requestAnimationFrame(loop);
+    }
+
+    resize();
+    draw(0);
+
+    window.addEventListener('resize', () => {
+        resize();
+        draw(lastFrame * 0.00012);
+    });
+
+    if (!prefersReducedMotion) {
+        new IntersectionObserver(entries => {
+            visible = entries[0].isIntersecting;
+        }).observe(band);
+        requestAnimationFrame(loop);
+    }
+}
+
+// Team monograms in place of the generic person icon
+function initMonograms() {
+    document.querySelectorAll('.team-member-card').forEach(card => {
+        const photo = card.querySelector('.member-photo');
+        const name = card.querySelector('h3');
+        if (!photo || !name || photo.querySelector('img')) return;
+
+        const words = name.textContent.replace(/^Dr\.?\s+/i, '').trim().split(/\s+/);
+        const initials = (words[0][0] + (words.length > 1 ? words[words.length - 1][0] : '')).toUpperCase();
+        photo.innerHTML = '';
+        const span = document.createElement('span');
+        span.className = 'member-initials';
+        span.textContent = initials;
+        photo.append(span);
+        photo.setAttribute('aria-hidden', 'true');
+    });
+}
+
+// Count stat figures up from zero when they scroll into view
+function countUp(el) {
+    const target = parseInt(el.textContent, 10);
+    if (Number.isNaN(target)) return;
+    const start = performance.now();
+    const duration = 1200;
+    el.textContent = '0';
+
+    function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = String(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+// Reveal cards as they enter the viewport. Anything already on screen at load stays as is.
+function initReveal() {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+    const selector = [
+        '.overview-card', '.quick-link-card', '.objective-item', '.wp-card', '.timeline-year',
+        '.timeline-item', '.stat-card', '.partner-detailed-card', '.team-member-card',
+        '.publication-item', '.research-area-card', '.video-card'
+    ].join(', ');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('revealed');
+            const stat = entry.target.querySelector('.stat-number');
+            if (stat) countUp(stat);
+            obs.unobserve(entry.target);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll(selector).forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) return;
+        const siblings = Array.from(el.parentElement.children);
+        el.style.transitionDelay = `${(siblings.indexOf(el) % 4) * 70}ms`;
+        el.classList.add('will-reveal');
         observer.observe(el);
     });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.hero, .page-header').forEach(initContours);
+    initMonograms();
+    initReveal();
 });
 
-// Work Package Cards hover effect
-document.querySelectorAll('.wp-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
-});
-
-// Team member email copy to clipboard functionality
+// Team member email copy to clipboard
 document.querySelectorAll('.email-link').forEach(emailLink => {
     emailLink.addEventListener('click', function(e) {
         e.preventDefault();
         const email = this.textContent.trim();
-        
+
         if (navigator.clipboard) {
-            navigator.clipboard.writeText(email).then(() => {
-                showToast('Email copied to clipboard!');
-            });
+            navigator.clipboard.writeText(email)
+                .then(() => showToast(`Copied ${email}`))
+                .catch(() => { window.location.href = this.href; });
         } else {
-            // Fallback for older browsers
-            const textArea = document.createElement('textarea');
-            textArea.value = email;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            showToast('Email copied to clipboard!');
+            window.location.href = this.href;
         }
     });
 });
 
-// Toast notification function
 function showToast(message) {
     const toast = document.createElement('div');
     toast.className = 'toast';
+    toast.setAttribute('role', 'status');
     toast.textContent = message;
-    toast.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: var(--primary-color);
-        color: white;
-        padding: 12px 24px;
-        border-radius: 8px;
-        box-shadow: var(--shadow-lg);
-        z-index: 10000;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
-    `;
-    
     document.body.appendChild(toast);
-    
-    // Animate in
+
+    requestAnimationFrame(() => toast.classList.add('show'));
+
     setTimeout(() => {
-        toast.style.opacity = '1';
-        toast.style.transform = 'translateY(0)';
-    }, 100);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            if (document.body.contains(toast)) {
-                document.body.removeChild(toast);
-            }
-        }, 300);
-    }, 3000);
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 2600);
 }
-
-// Lazy loading for images
-document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
-});
-
-// Parallax effect for hero section
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.hero');
-    
-    if (parallax) {
-        const speed = scrolled * 0.5;
-        parallax.style.transform = `translateY(${speed}px)`;
-    }
-});
-
-// Dynamic typing effect for hero title (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Initialize typing effect on page load (optional)
-// Uncomment if you want the typing effect
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        typeWriter(heroTitle, originalText, 80);
-    }
-});
-*/
-
-// Performance optimization: Debounce scroll events
-function debounce(func, wait, immediate) {
-    let timeout;
-    return function executedFunction() {
-        const context = this;
-        const args = arguments;
-        const later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-}
-
-// Apply debounce to scroll events
-const debouncedScroll = debounce(function() {
-    // Scroll-based animations and effects go here
-}, 10);
-
-window.addEventListener('scroll', debouncedScroll);
